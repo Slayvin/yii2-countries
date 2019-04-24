@@ -1,0 +1,32 @@
+{
+    "name": "slayvin/yii2-countries",
+    "description": "Model and migration to add countries to your yii2 app",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "yii 2", "countries", "module"],
+    "require": {
+        "php": ">=7.0.0",
+        "yiisoft/yii2": "~2.0.14",
+        "yeesoft/yii2-multilingual": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Slayvin",
+            "email": "sylvain.hittelet@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "slayvin\\countries\\": "src/",
+            "slayvin\\countries\\migrations\\": "src/migrations/",
+            "slayvin\\countries\\models\\": "src/models/"
+        }
+    },
+    "extra": {
+        "config-plugin": {
+            "web": "src/config/web.php"
+        }
+    }
+}
