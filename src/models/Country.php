@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yeesoft\multilingual\behaviors\MultilingualBehavior;
-use Countries\models\CountryQuery;
+use slayvin\countries\models\CountryQuery;
 
 /**
  * This is the model class for table "{{%countries}}".
