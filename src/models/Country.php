@@ -63,14 +63,17 @@ class Country extends ActiveRecord
         return new CountryQuery(get_called_class());
     }
 
-    public static function getList()
+    /**
+     *
+     * @param boolean $selectable
+     * @return array
+     */
+    public static function getList($selectable = false)
     {
         $countries = static::find()
-            ->select(['iso', 'name'])
-            ->joinWith('translations', false)
-            ->where(['language' => Yii::$app->language])
-            ->orderBy('default DESC, name')
-            ->asArray()
+            ->multilingual()
+            ->andOnCondition(['selectable' => $selectable])
+            ->orderBy('default DESC, iso')
             ->all();
 
         return ArrayHelper::map($countries, 'iso', 'name');
