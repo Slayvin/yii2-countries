@@ -31,9 +31,7 @@ class Country extends ActiveRecord
         return [
             'multilingual' => [
                 'class' => MultilingualBehavior::class,
-                'languages' => [
-                    'en' => 'English',
-                ],
+                'languages' => Yii::$app->params['languages'] ?? ['en' => 'English'],
                 'requireTranslations' => false,
                 'attributes' => ['name', 'demonym'],
                 'languageForeignKey' => 'country_iso',

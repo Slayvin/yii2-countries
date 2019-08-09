@@ -58,6 +58,13 @@ To add the tables to the database, run the provided migration:
     ],
 ```
 
+If you need multilingual support, add the languages in your app config params:
+```php
+...
+'languages' => ['en',...]
+...
+```
+
 ### Database tables
 
 
