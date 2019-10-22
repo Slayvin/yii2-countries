@@ -5,7 +5,7 @@ Yii2 Countries
 ----------------------------
 
 **Yii2 Countries** --- Multilingual extension for the Yii2 framework, which provides a list of all countries and their demonym, plus a migration file and an AR model.
-- Requires `yeesoft/yii2-multilingual` ([Github](https://github.com/yeesoft/yii2-multilingual))
+- Requires `agroxy/yii2-multilingual` ([Github](https://github.com/agroxy/yii2-multilingual))
 - Multilanguage support
 
 
@@ -15,7 +15,7 @@ Yii2 Countries
 - php >= 7.0
 - composer
 - MySql >= 5.5
-- yeesoft/yii2-multilingual
+- agroxy/yii2-multilingual
 
 
 3. Installation
@@ -23,12 +23,12 @@ Yii2 Countries
 
 Via composer:
 
-```composer require "slayvin/yii2-countries": "^1.0.0"```
+```composer require "softedge/yii2-countries": "^1.1.0"```
 
 or add the following in section **require** of composer.json:
 ```
 "require": {
-    "slayvin/yii2-countries": "^1.0.0"
+    "softedge/yii2-countries": "^1.1.0"
 }
 ```
 and run command ```composer install```,

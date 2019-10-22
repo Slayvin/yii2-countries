@@ -1,18 +1,20 @@
 {
-    "name": "slayvin/yii2-countries",
+    "name": "softedge/yii2-countries",
     "description": "Model and migration to add countries to your yii2 app",
     "type": "yii2-extension",
-    "keywords": ["yii2", "yii 2", "countries", "module"],
+    "keywords": ["yii2", "yii 2", "countries", "extension"],
     "require": {
         "php": ">=7.0.0",
-        "yiisoft/yii2": "~2.0.14",
-        "agroxy/yii2-multilingual": "^1.0.2"
+        "yiisoft/yii2": "~2.0.14"
+    },
+    "suggest": {
+        "agroxy/yii2-multilingual": "Allows multilingual attributes for AR models"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": "Slayvin",
-            "email": "sylvain.hittelet@gmail.com"
+            "name": "Softedge",
+            "email": "sh@softedge.be"
         }
     ],
     "minimum-stability": "dev",

@@ -24,6 +24,9 @@ class m180517_162202_create_table_countries extends Migration
             'iso' => $this->char(3)->notNull(),
             'selectable' => $this->boolean()->defaultValue(false),
             'default' => $this->boolean()->defaultValue(false),
+            // translatable fields
+            'name' => $this->string(63)->defaultValue(''),
+            'demonym' => $this->string(63)->defaultValue(null),
             ], $tableOptions);
 
         $this->addPrimaryKey('pk-country', '{{%countries}}', 'iso');
@@ -32,23 +35,27 @@ class m180517_162202_create_table_countries extends Migration
             'country_iso' => $this->char(3)->notNull(),
             'language' => $this->string(6)->notNull(),
             // translatable fields
-            'name' => $this->string(63)->notNull(),
-            'demonym' => $this->string(63),
+            'name' => $this->string(63)->notNull()->defaultValue(''),
+            'demonym' => $this->string(63)->defaultValue(null),
             ], $tableOptions);
 
         $this->addForeignKey('fk-country_iso', '{{%countries_lang}}', 'country_iso', '{{%countries}}', 'iso', 'CASCADE', 'CASCADE');
         $this->createIndex('unique-country-lang', '{{%countries_lang}}', ['language', 'country_iso'], true);
         $this->createIndex('idx-country-lang', '{{%countries_lang}}', 'language');
 
-        $countries    = require(__DIR__ . '/../data/countries.php');
-        $countryCodes = array_keys($countries);
-        $isoCodes     = array_map(function($key) {
-            return [$key];
-        }, $countryCodes);
-        $translationsResults = [];
-        foreach ($countries as $iso => $translations) {
+        $countriesData = require(__DIR__ . '/../data/countries.php');
+        $countries     = [];
+        foreach ($countriesData as $iso => $translations) {
+            $countries[] = [
+                $iso,
+                $translations['en'][0] ?? '',
+                $translations['en'][1] ?? null,
+            ];
+        }
+        $countriesTranslations = [];
+        foreach ($countriesData as $iso => $translations) {
             foreach ($translations as $language => $translation) {
-                $translationsResults[] = [
+                $countriesTranslations[] = [
                     $iso,
                     $language,
                     isset($translation[0]) ? $translation[0] : '',
@@ -57,8 +64,8 @@ class m180517_162202_create_table_countries extends Migration
             }
         }
         try {
-            $this->batchInsert('{{%countries}}', ['iso'], $isoCodes);
-            $this->batchInsert('{{%countries_lang}}', ['country_iso', 'language', 'name', 'demonym'], $translationsResults);
+            $this->batchInsert('{{%countries}}', ['iso', 'name', 'demonym'], $countries);
+            $this->batchInsert('{{%countries_lang}}', ['country_iso', 'language', 'name', 'demonym'], $countriesTranslations);
         } catch (\Exception $e) {
             echo print_r($e->getMessage());
         }
