@@ -21,7 +21,7 @@ class m180517_162202_create_table_countries extends Migration
          * @property string $nationality (32)
          */
         $this->createTable('{{%countries}}', [
-            'iso' => $this->char(3)->notNull()->unique(),
+            'iso' => $this->char(3)->notNull(),
             'selectable' => $this->boolean()->defaultValue(false),
             'default' => $this->boolean()->defaultValue(false),
             ], $tableOptions);
@@ -40,9 +40,9 @@ class m180517_162202_create_table_countries extends Migration
         $this->createIndex('unique-country-lang', '{{%countries_lang}}', ['language', 'country_iso'], true);
         $this->createIndex('idx-country-lang', '{{%countries_lang}}', 'language');
 
-        $countries = require(__DIR__ . '/../data/countries.php');
+        $countries    = require(__DIR__ . '/../data/countries.php');
         $countryCodes = array_keys($countries);
-        $isoCodes = array_map(function($key) {
+        $isoCodes     = array_map(function($key) {
             return [$key];
         }, $countryCodes);
         $translationsResults = [];
